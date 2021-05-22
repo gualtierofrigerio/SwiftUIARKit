@@ -16,6 +16,7 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 Text(arDelegate.message)
+                    .foregroundColor(Color.primary)
                     .frame(maxWidth: .infinity)
                     .padding(.bottom, 20)
                     .background(Color.secondary)

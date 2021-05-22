@@ -39,15 +39,6 @@ class ARDelegate: NSObject, ARSCNViewDelegate, ObservableObject {
         
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        print("node for")
-        return nil
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        print("didAdd node")
-    }
-    
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         print("camera did change \(camera.trackingState)")
         if case ARCamera.TrackingState.normal = camera.trackingState  {
