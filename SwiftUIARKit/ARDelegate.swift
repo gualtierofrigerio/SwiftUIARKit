@@ -41,8 +41,13 @@ class ARDelegate: NSObject, ARSCNViewDelegate, ObservableObject {
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         print("camera did change \(camera.trackingState)")
-        if case ARCamera.TrackingState.normal = camera.trackingState  {
-            message = "ready"
+        switch camera.trackingState {
+        case .limited(_):
+            message = "tracking limited"
+        case .normal:
+            message =  "tracking ready"
+        case .notAvailable:
+            message = "cannot track"
         }
     }
     
@@ -70,7 +75,7 @@ class ARDelegate: NSObject, ARSCNViewDelegate, ObservableObject {
             message = "distance " + String(format: "%.2f cm", distance)
         }
         else {
-            message = "tap to measure"
+            message = "add second point"
         }
     }
 }
