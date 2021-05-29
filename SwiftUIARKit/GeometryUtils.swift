@@ -9,21 +9,23 @@ import Foundation
 import ARKit
 
 class GeometryUtils {
-    static func calculateDistance(firstNode: SCNNode, secondNode:SCNNode) -> Float {
-        let firstPosition = firstNode.position
-        let secondPosition = secondNode.position
+    static func calculateDistance(first: SCNVector3, second: SCNVector3) -> Float {
         var distance:Float = sqrt(
-            pow(secondPosition.x - firstPosition.x, 2) +
-                pow(secondPosition.y - firstPosition.y, 2) +
-                pow(secondPosition.z - firstPosition.z, 2)
+            pow(second.x - first.x, 2) +
+                pow(second.y - first.y, 2) +
+                pow(second.z - first.z, 2)
         )
         
         distance *= 100 // convert in cm
         return abs(distance)
     }
     
+    static func calculateDistance(firstNode: SCNNode, secondNode:SCNNode) -> Float {
+        return calculateDistance(first: firstNode.position, second: secondNode.position)
+    }
+    
     static func createCircle(fromRaycastResult result:ARRaycastResult) -> SCNNode {
-        let circleGeometry = SCNSphere(radius: 0.005)
+        let circleGeometry = SCNSphere(radius: 0.010)
         
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.systemBlue
